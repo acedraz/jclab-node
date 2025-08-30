@@ -1,0 +1,22 @@
+{
+  "name": "jclab-node",
+  "version": "1.0.0",
+  "description": "JC laboratios site ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acedraz/jclab-node.git"
+  },
+  "keywords": [
+    "jslab"
+  ],
+  "author": "Aislan Cedraz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acedraz/jclab-node/issues"
+  },
+  "homepage": "https://github.com/acedraz/jclab-node#readme"
+}
