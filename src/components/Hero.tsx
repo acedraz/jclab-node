@@ -1,5 +1,8 @@
 import React from 'react';
-import { ArrowRight, Shield, Clock, Award } from 'lucide-react';
+import { Shield, Clock, Award } from 'lucide-react';
+import { getCompanyYearsSinceFundation } from '../utils/Company'
+import ScheduleExamButton from './button/ScheduleExam';
+import SeeResultsButton from './button/SeeResults';
 
 const Hero: React.FC = () => {
   return (
@@ -14,7 +17,7 @@ const Hero: React.FC = () => {
                 <span className="text-medical-600 block">Análises Clínicas</span>
               </h1>
               <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
-                Há mais de 20 anos oferecendo diagnósticos precisos e confiáveis com tecnologia de ponta e atendimento humanizado.
+                Há mais de {getCompanyYearsSinceFundation()} anos oferecendo diagnósticos precisos e confiáveis com tecnologia de ponta e atendimento humanizado.
               </p>
             </div>
 
@@ -36,13 +39,8 @@ const Hero: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-medical-600 text-white px-8 py-4 rounded-lg hover:bg-medical-700 transition-all duration-300 font-medium flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                <span>Agendar Exame</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="border-2 border-medical-600 text-medical-600 px-8 py-4 rounded-lg hover:bg-medical-600 hover:text-white transition-all duration-300 font-medium">
-                Ver Resultados
-              </button>
+                { ScheduleExamButton('bg-medical-600 text-white px-8 py-4 rounded-lg hover:bg-medical-700 transition-all duration-300 font-medium flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1', 'w-5 h-5') }
+                { SeeResultsButton('border-2 border-medical-600 text-medical-600 px-8 py-4 rounded-lg hover:bg-medical-600 hover:text-white transition-all duration-300 font-medium') }
             </div>
           </div>
 
@@ -50,7 +48,7 @@ const Hero: React.FC = () => {
           <div className="relative">
             <div className="aspect-[4/3] lg:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/images/blood_analysis.jpg"
                 alt="Laboratório moderno com equipamentos de análise"
                 className="w-full h-full object-cover"
               />
@@ -58,7 +56,7 @@ const Hero: React.FC = () => {
             {/* Floating Card */}
             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
               <div className="text-center">
-                <div className="text-3xl font-bold text-medical-600">20+</div>
+                <div className="text-3xl font-bold text-medical-600">{getCompanyYearsSinceFundation()}+</div>
                 <div className="text-sm text-gray-600">Anos de Experiência</div>
               </div>
             </div>

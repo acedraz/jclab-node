@@ -1,12 +1,13 @@
 import React from 'react';
 import { Users, Target, Lightbulb, Trophy } from 'lucide-react';
+import { getCompanyFundationDate, getCompanyYearsSinceFundation, getCompanyData } from '../utils/Company';
 
 const About: React.FC = () => {
   const stats = [
-    { number: "20+", label: "Anos de Experiência" },
+    { number: getCompanyYearsSinceFundation()+"+", label: "Anos de Experiência" },
     { number: "50K+", label: "Exames Realizados" },
     { number: "98%", label: "Satisfação dos Clientes" },
-    { number: "24h", label: "Resultados Rápidos" }
+    { number: "24h", label: "Resultados Rápidos*", detail: "Consulte disponibilidade" }
   ];
 
   const values = [
@@ -41,10 +42,10 @@ const About: React.FC = () => {
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Sobre o 
-                <span className="text-medical-600 block">JC Laboratórios</span>
+                <span className="text-medical-600 block">{ getCompanyData().name_fantasy} </span>
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                Desde 2003, o JC Laboratórios tem sido referência em análises clínicas, 
+                Desde {getCompanyFundationDate().getFullYear()}, o { getCompanyData().name } tem sido referência em análises clínicas,
                 oferecendo diagnósticos precisos e atendimento de excelência para milhares 
                 de pacientes em São Paulo.
               </p>
@@ -61,6 +62,9 @@ const About: React.FC = () => {
                 <div key={index} className="text-center p-6 bg-gray-50 rounded-xl">
                   <div className="text-3xl font-bold text-medical-600 mb-2">{stat.number}</div>
                   <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+                    {stat.detail && (
+                        <div className="text-xs text-gray-400 mt-1">{stat.detail}</div>
+                    )}
                 </div>
               ))}
             </div>

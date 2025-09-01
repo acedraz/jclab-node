@@ -13,6 +13,10 @@ import {
   Lightbulb,
   Trophy
 } from 'lucide-react';
+import {getAddress, getCompanyData, getSocialValue, getCompanyYearsSinceFundation } from '../utils/Company';
+import Hours from './services/Hours'
+import SocialMedia from './button/SocialMedia';
+import Map from './button/Map';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -41,24 +45,32 @@ const Contact: React.FC = () => {
     {
       icon: <Trophy className="w-8 h-8" />,
       title: "Excelência",
-      description: "Mais de 20 anos de experiência e reconhecimento no mercado."
+      description: "Mais de " + getCompanyYearsSinceFundation() + " anos de experiência e reconhecimento no mercado."
     }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log('Form submitted:', formData);
     alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+    function formatPhone(value: string) {
+        return value
+            .replace(/\D/g, '') // Remove tudo que não for dígito
+            .replace(/^(\d{2})(\d)/g, '($1) $2') // Coloca parênteses nos dois primeiros dígitos
+            .replace(/(\d{5})(\d{1,4})$/, '$1-$2') // Coloca hífen após o quinto dígito
+            .slice(0, 15); // Limita o tamanho
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: name === 'phone' ? formatPhone(value) : value
+        });
+    };
 
   return (
     <section id="contact" className="py-20 bg-gray-50">
@@ -74,7 +86,7 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-16 mb-16">
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="bg-white rounded-xl shadow-lg p-8">
@@ -89,8 +101,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Telefone</h4>
-                    <p className="text-gray-600">(11) 3456-7890</p>
-                    <p className="text-gray-600">(11) 98765-4321</p>
+                    <p className="text-gray-600">{ getSocialValue('phone') }</p>
                   </div>
                 </div>
 
@@ -100,8 +111,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">E-mail</h4>
-                    <p className="text-gray-600">contato@jclaboratorio.com.br</p>
-                    <p className="text-gray-600">resultados@jclaboratorio.com.br</p>
+                    <p className="text-gray-600">{ getSocialValue('email') }</p>
                   </div>
                 </div>
 
@@ -112,9 +122,9 @@ const Contact: React.FC = () => {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Endereço</h4>
                     <p className="text-gray-600">
-                      Rua das Análises, 123<br />
-                      Vila Médica - São Paulo, SP<br />
-                      CEP: 01234-567
+                        { getAddress().street }, { getAddress().number }<br />
+                        { getAddress().neighborhood } - { getAddress().city }, { getAddress().state_iso2code }<br />
+                        CEP: { getAddress().zipCode }
                     </p>
                   </div>
                 </div>
@@ -125,11 +135,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Horário de Funcionamento</h4>
-                    <p className="text-gray-600">
-                      Segunda a Sexta: 6:00 - 18:00<br />
-                      Sábado: 7:00 - 12:00<br />
-                      Domingo: Fechado
-                    </p>
+                      { Hours("text-gray-600") }
                   </div>
                 </div>
               </div>
@@ -137,17 +143,7 @@ const Contact: React.FC = () => {
               {/* Social Media */}
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <h4 className="font-semibold text-gray-900 mb-4">Redes Sociais</h4>
-                <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors duration-300">
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors duration-300">
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors duration-300">
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                </div>
+                  { SocialMedia() }
               </div>
             </div>
           </div>
@@ -236,26 +232,13 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Map Section */}
-        <div className="bg-white rounded-xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Nossa Localização
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-gray-200">
-            <div className="w-full h-full flex items-center justify-center text-gray-500">
-              <div className="text-center">
-                <MapPin className="w-12 h-12 mx-auto mb-4" />
-                <p className="text-lg font-medium">Mapa Interativo</p>
-                <p className="text-sm">Rua das Análises, 123 - Vila Médica, SP</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          { Map() }
 
         {/* Values Section */}
         <div className="mt-20">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Por que Escolher o JC Laboratórios?
+              Por que Escolher o { getCompanyData().name_fantasy }?
             </h3>
           </div>
 

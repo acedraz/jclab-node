@@ -1,0 +1,86 @@
+[
+  {
+    "store": "jclab-matriz",
+    "date_fundation": "2021-09-28",
+    "name": "JC Laboratórios Ltda",
+    "name_fantasy": "JC Laboratórios",
+    "cnpj": "43.680.045/0001-67",
+    "addresses": [
+      {
+        "type": "billing",
+        "address": {
+          "street": "Rua Heitor Liberato",
+          "number": "2150",
+          "complement": "",
+          "neighborhood": "Centro",
+          "city": "Itajaí",
+          "state_iso2code": "SC",
+          "state": "Santa Catarina",
+          "zipCode": "04101-000",
+          "telephone": "(47) 99229-4688",
+          "email": "contato@jclaboratorio.com.br"
+        },
+        "cnpj": "43.680.045/0001-67"
+      }
+    ],
+    "social": [
+      {
+        "type": "email",
+        "value": "contato@jclaboratorio.com.br"
+      },
+      {
+        "type": "phone",
+        "value": "(47) 99229-4688"
+      },
+      {
+        "type": "whatsapp",
+        "value": "(47) 99229-4688"
+      },
+      {
+        "type": "instagram",
+        "value": "https://www.instagram.com/jc.laboratorio/"
+      },
+      {
+        "type": "facebook",
+        "value": "https://www.facebook.com/JClab01"
+      }
+    ],
+    "hours": [
+        {
+            "day": "Segunda",
+            "open": "07:00",
+            "close": "17:00"
+        },
+        {
+            "day": "Terça",
+            "open": "07:00",
+            "close": "17:00"
+        },
+        {
+            "day": "Quarta",
+            "open": "07:00",
+            "close": "17:00"
+        },
+        {
+            "day": "Quinta",
+            "open": "07:00",
+            "close": "17:00"
+        },
+        {
+            "day": "Sexta",
+            "open": "07:00",
+            "close": "17:00"
+        },
+        {
+            "day": "Sábado",
+            "open": null,
+            "close": null
+        },
+        {
+            "day": "Domingo",
+            "open": null,
+            "close": null
+        }
+    ]
+  }
+]

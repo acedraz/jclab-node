@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import {getSocialValue, getAddress, getCompanyData} from '../utils/Company'
+import ScheduleExamButton from './button/ScheduleExam';
+import SeeResultsButton from './button/SeeResults';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,16 +20,16 @@ const Header: React.FC = () => {
             <div className="flex space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" />
-                <span>(11) 3456-7890</span>
+                <span>{getSocialValue('phone')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>contato@jclaboratorio.com.br</span>
+                  <span>{getSocialValue('email')}</span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin className="w-4 h-4" />
-              <span>São Paulo, SP</span>
+              <span>{getAddress().city}, {getAddress().state_iso2code}</span>
             </div>
           </div>
         </div>
@@ -38,11 +41,11 @@ const Header: React.FC = () => {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-medical-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">JC</span>
-              </div>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white">
+                    <img src="/images/icon.png" alt="JC Logo" className="w-10 h-10 object-contain" />
+                </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-800">JC Laboratórios</h1>
+                <h1 className="text-xl font-bold text-gray-800">{getCompanyData()?.name_fantasy}</h1>
                 <p className="text-sm text-gray-600">Excelência em Análises</p>
               </div>
             </div>
@@ -65,9 +68,7 @@ const Header: React.FC = () => {
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <button className="bg-medical-600 text-white px-6 py-2 rounded-lg hover:bg-medical-700 transition-colors duration-300 font-medium">
-                Agendar Exame
-              </button>
+                {ScheduleExamButton("bg-medical-600 text-white px-6 py-2 rounded-lg hover:bg-medical-700 transition-colors duration-300 font-medium")}
             </div>
 
             {/* Mobile Menu Button */}
@@ -111,9 +112,8 @@ const Header: React.FC = () => {
                 >
                   Contato
                 </a>
-                <button className="bg-medical-600 text-white px-6 py-2 rounded-lg hover:bg-medical-700 transition-colors duration-300 font-medium text-left">
-                  Agendar Exame
-                </button>
+                  { ScheduleExamButton("bg-medical-600 text-white px-6 py-2 rounded-lg hover:bg-medical-700 transition-colors duration-300 font-medium text-left")}
+                  { SeeResultsButton('border-2 border-medical-600 text-medical-600 px-8 py-4 rounded-lg hover:bg-medical-600 hover:text-white transition-all duration-300 font-medium')}
               </nav>
             </div>
           )}

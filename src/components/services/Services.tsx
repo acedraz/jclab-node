@@ -1,5 +1,9 @@
 import React from 'react';
-import { 
+import servicesData from './services.json';
+import howData from './how.json';
+import { Service } from '../../model/service';
+
+import {
   Microscope, 
   Heart, 
   Brain, 
@@ -10,47 +14,21 @@ import {
   Clock
 } from 'lucide-react';
 
-
+const getIcon = (iconName: string, className: string | null = 'w-8 h-8'): React.ReactNode => {
+  const icons: { [key: string]: React.ReactNode } = {
+    Microscope: <Microscope className={className} />,
+    Heart: <Heart className={className} />,
+    Brain: <Brain className={className} />,
+    Eye: <Eye className={className} />,
+    Stethoscope: <Stethoscope className={className} />,
+    Activity: <Activity className={className} />,
+    Clock: <Clock className={className} />
+  };
+  return icons[iconName] || <Microscope className={className} />;
+};
 
 const Services: React.FC = () => {
-  const services: Service[] = [
-    {
-      icon: <Microscope className="w-8 h-8" />,
-      title: "Análises Clínicas",
-      description: "Exames laboratoriais completos com precisão e agilidade",
-      features: ["Hemograma completo", "Bioquímica", "Hormônios", "Marcadores tumorais"]
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Cardiologia",
-      description: "Diagnósticos cardiovasculares especializados",
-      features: ["Eletrocardiograma", "Ecocardiograma", "Teste ergométrico", "Holter 24h"]
-    },
-    {
-      icon: <Brain className="w-8 h-8" />,
-      title: "Neurologia",
-      description: "Exames neurológicos avançados",
-      features: ["Eletroencefalograma", "Doppler transcraniano", "Polissonografia", "Eletroneuromiografia"]
-    },
-    {
-      icon: <Eye className="w-8 h-8" />,
-      title: "Oftalmologia",
-      description: "Cuidados completos para sua visão",
-      features: ["Exame de vista", "Retinografia", "Campimetria", "Tonometria"]
-    },
-    {
-      icon: <Stethoscope className="w-8 h-8" />,
-      title: "Check-up Executivo",
-      description: "Avaliação médica completa preventiva",
-      features: ["Consulta médica", "Exames laboratoriais", "Avaliação cardíaca", "Relatório completo"]
-    },
-    {
-      icon: <Activity className="w-8 h-8" />,
-      title: "Medicina do Trabalho",
-      description: "Saúde ocupacional e exames admissionais",
-      features: ["Admissional", "Periódico", "Demissional", "Audiometria"]
-    }
-  ];
+  const services: Service[] = servicesData;
 
   return (
     <section id="services" className="py-20 bg-gray-50">
@@ -74,7 +52,7 @@ const Services: React.FC = () => {
               className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100 hover:border-medical-200 group"
             >
               <div className="text-medical-600 mb-4 group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
+                {getIcon(service.icon)}
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 {service.title}
@@ -106,18 +84,14 @@ const Services: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: "1", title: "Agendamento", desc: "Agende online ou por telefone" },
-              { step: "2", title: "Preparação", desc: "Receba instruções por WhatsApp" },
-              { step: "3", title: "Coleta", desc: "Realize o exame em nossa unidade" },
-              { step: "4", title: "Resultados", desc: "Acesse online em até 24h" }
-            ].map((item, index) => (
+              {howData.map((item, index) => (
               <div key={index} className="text-center">
                 <div className="w-16 h-16 bg-medical-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">
                   {item.step}
                 </div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h4>
                 <p className="text-gray-600">{item.desc}</p>
+                <p className="text-gray-600 text-xs">{item.details}</p>
               </div>
             ))}
           </div>

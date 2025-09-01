@@ -1,0 +1,26 @@
+[
+  {
+    "step": "1",
+    "title": "Agendamento",
+    "desc": "Agende online ou por telefone",
+    "details": ""
+  },
+  {
+    "step": "2",
+    "title": "Preparação",
+    "desc": "Receba instruções por WhatsApp",
+    "details": ""
+  },
+  {
+    "step": "3",
+    "title": "Coleta",
+    "desc": "Realize o exame em nossa unidade",
+    "details": ""
+  },
+  {
+    "step": "4",
+    "title": "Resultados",
+    "desc": "Acesse online em até 24h*",
+    "details": "*Consulte prazos para exames especiais"
+  }
+]

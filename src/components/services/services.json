@@ -1,0 +1,26 @@
+[
+  {
+    "icon": "Microscope",
+    "title": "Análises Clínicas",
+    "description": "Exames laboratoriais completos com precisão e agilidade",
+    "features": [
+      "Hemograma completo", "Bioquímica", "Hormônios", "Marcadores tumorais"
+    ]
+  },
+  {
+    "icon": "Heart",
+    "title": "Agendamento de coleta",
+    "description": "Estamos preparados para atender você em casa, no trabalho ou em outro local que desejar.",
+    "features": [
+      "Atendimento residencial", "Atendimento empresarial", "Atendimento hospitalar", "Atendimento em qualquer lugar"
+    ]
+  },
+  {
+    "icon": "Eye",
+    "title": "Orientações e Orçamentos",
+    "description": "Utilize nossos serviços via WhatsApp. Tire uma foto de sua requisição médica e envie para nós.",
+    "features": [
+      "Telefone", "Whatsapp", "Email", "Presencial"
+    ]
+  }
+]
