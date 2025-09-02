@@ -29,8 +29,8 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-medical-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">JC</span>
+              <div className="w-10 h-10 bg-gray-50 hover:bg-medical-600 rounded-lg flex items-center justify-center transition-colors duration-300">
+                  <img src="/images/icon.png" alt="JC Logo" className="w-8 h-8 object-contain" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">{ getCompanyData().name_fantasy }</h3>
